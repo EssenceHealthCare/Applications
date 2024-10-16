@@ -16,7 +16,8 @@ import { AUTH_BASE_URL } from './shared/api/auth-api';
   providers: [
     {
       provide: AUTH_BASE_URL,
-      useValue: 'https://localhost:7061',
+      useValue:
+        'https://care-auth-cze7emhkhqg7akf2.canadacentral-01.azurewebsites.net',
     },
   ],
   bootstrap: [AppComponent],
