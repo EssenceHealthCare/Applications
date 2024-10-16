@@ -352,3 +352,7 @@ MigrationBackup/
 .ionide/
 
 Files/
+/Care.Core.Auth/Properties/ServiceDependencies/local/compute.appService1.arm.json
+/Care.Core.Auth/Properties/ServiceDependencies/care-auth - Web Deploy/profile.arm.json
+/Care.Core.Auth/Properties/serviceDependencies.json
+/Care.Core.Auth/Properties/serviceDependencies.local.json
