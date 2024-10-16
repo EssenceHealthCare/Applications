@@ -15,20 +15,9 @@ var jwtOptions = new JwtOptions();
 builder.Configuration.GetSection("Jwt").Bind(jwtOptions);
 builder.Services.AddSingleton(jwtOptions);
 
-//builder.Services.AddDbContext<AuthContext>(option =>
-//{
-//    option.UseSqlServer(builder.Configuration.GetConnectionString("AuthContext"));
-//});
-
-builder.Services.AddCors(options =>
+builder.Services.AddDbContext<AuthContext>(option =>
 {
-    options.AddPolicy(corsPolicy, policyBuilder =>
-    {
-        policyBuilder
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .WithOrigins("http://localhost:4200");
-    });
+    option.UseSqlServer(builder.Configuration.GetConnectionString("AuthContext"));
 });
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
