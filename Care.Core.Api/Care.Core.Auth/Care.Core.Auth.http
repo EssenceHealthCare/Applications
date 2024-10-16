@@ -1,0 +1,6 @@
+@Care.Core.Auth_HostAddress = http://localhost:5080
+
+GET {{Care.Core.Auth_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
