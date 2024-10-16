@@ -15,10 +15,10 @@ var jwtOptions = new JwtOptions();
 builder.Configuration.GetSection("Jwt").Bind(jwtOptions);
 builder.Services.AddSingleton(jwtOptions);
 
-builder.Services.AddDbContext<AuthContext>(option =>
-{
-    option.UseSqlServer(builder.Configuration.GetConnectionString("AuthContext"));
-});
+//builder.Services.AddDbContext<AuthContext>(option =>
+//{
+//    option.UseSqlServer(builder.Configuration.GetConnectionString("AuthContext"));
+//});
 
 builder.Services.AddCors(options =>
 {
