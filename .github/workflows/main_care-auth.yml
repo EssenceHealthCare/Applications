@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'care-auth'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D5966C1F6C8D47729E79B596A790C4DD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6C6D3791323347259B9CC483AE9E4D9C }}
           package: .
