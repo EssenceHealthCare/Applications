@@ -30,7 +30,7 @@ jobs:
           app_location: "/care-web"
           api_location: ""
           output_location: "dist/care-web"
-          app_build_command: "npm run build && cp routes.json dist"
+          app_build_command: "npm run build && cp routes.json dist/care-web"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
