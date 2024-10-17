@@ -17,7 +17,9 @@ namespace Care.Core.Auth.Identity
         }
         public string GenerateJwtToken(ApplicationUser user, IList<string> roles)
         {
-            var claims = new List<Claim>()
+            user.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
+            
+            var claims = new List<Claim>
             {
                 new(ClaimTypes.Name, user.FirstName),
                 new(ClaimTypes.Name, user.LastName),
