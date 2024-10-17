@@ -6,13 +6,26 @@
       <button (click)="signup()" class="btn btn-link">Sign Up</button>
     </p>
   </div>
-  <form class="needs-validation mb-6" novalidate>
+  <form
+    class="needs-validation mb-6"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="form-floating mb-4">
-      <input type="email" class="form-control" id="email" placeholder="Email" />
+      <input
+        formControlName="email"
+        required
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+      />
       <label for="email">Email</label>
     </div>
     <div class="form-floating mb-4">
       <input
+        formControlName="password"
+        required
         type="password"
         class="form-control"
         id="password"
@@ -21,7 +34,9 @@
       <label for="password">Password</label>
     </div>
     <div class="">
-      <button class="btn btn-primary w-100 rounded-pill">Sign In</button>
+      <button type="submit" class="btn btn-primary w-100 rounded-pill">
+        Sign In
+      </button>
     </div>
   </form>
 </div>
