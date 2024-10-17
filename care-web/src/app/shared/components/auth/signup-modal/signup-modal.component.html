@@ -1,1 +1,93 @@
-<p>signup-modal works!</p>
+<div class="offcanvas-header border-bottom">
+  <h3 class="offcanvas-title">Register for an account</h3>
+  <button
+    type="button"
+    class="btn-close text-reset"
+    aria-label="Close"
+    (click)="activeOffcanvas.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="offcanvas-body" ngbAutofocus>
+  <div class="row justify-content-center">
+    <div class="w-100 align-self-end col-12">
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="needs-validation mb-6"
+      >
+        <div class="form-floating mb-4">
+          <input
+            formControlName="firstName"
+            required
+            type="text"
+            class="form-control"
+            id="firstName"
+            placeholder="First Name"
+          />
+          <label for="firstName">First Name</label>
+        </div>
+        <div class="form-floating mb-4">
+          <input
+            formControlName="lastName"
+            required
+            type="text"
+            class="form-control"
+            id="lastName"
+            placeholder="Last Name"
+          />
+          <label for="lastName">Last Name</label>
+        </div>
+        <div class="form-floating mb-4">
+          <input
+            formControlName="email"
+            required
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Email"
+          />
+          <label for="email">Email</label>
+        </div>
+        <div class="form-floating mb-4">
+          <input
+            formControlName="password"
+            required
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+          <label for="password">Password</label>
+        </div>
+        <div class="form-floating mb-4">
+          <input
+            formControlName="confirmPassword"
+            required
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            placeholder="Password"
+          />
+          <label for="confirmPassword">Confirm Password</label>
+        </div>
+      </form>
+      <div class="mb-4">
+        Already have an account?
+        <button type="button" (click)="login()" class="btn btn-link">
+          Sign In
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="offcanvas-footer p-3 border-top">
+  <button (click)="onSubmit()" class="btn btn-primary rounded-pill w-100">
+    Submit
+  </button>
+  <button
+    (click)="activeOffcanvas.dismiss('Cross click')"
+    class="btn btn-light rounded-pill w-100"
+  >
+    Cancel
+  </button>
+</div>
