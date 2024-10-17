@@ -1,1 +1,27 @@
-<p>login-modal works!</p>
+<div class="modal-body">
+  <div class="mb-4 mt-5">
+    <h3 class="text-center">Login to your account</h3>
+    <p class="text-center">
+      Don't have an account yet?
+      <button (click)="signup()" class="btn btn-link">Sign Up</button>
+    </p>
+  </div>
+  <form class="needs-validation mb-6" novalidate>
+    <div class="form-floating mb-4">
+      <input type="email" class="form-control" id="email" placeholder="Email" />
+      <label for="email">Email</label>
+    </div>
+    <div class="form-floating mb-4">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+      />
+      <label for="password">Password</label>
+    </div>
+    <div class="">
+      <button class="btn btn-primary w-100 rounded-pill">Sign In</button>
+    </div>
+  </form>
+</div>
