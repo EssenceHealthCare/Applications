@@ -29,10 +29,7 @@ jobs:
             mv temp.json appsettings.json
           env:
             AUTH_CONTEXT: ${{ secrets.AUTH_CONTEXT }}
-            JWT_KEY: ${{ secrets.JWT_KEY }}
-            JWT_ISSUER: ${{ secrets.JWT_ISSUER }}
-            JWT_AUDIENCE: ${{ secrets.JWT_AUDIENCE }}
-
+            
       - name: Build with dotnet
         run: dotnet build ./Care.Core.Api/Care.Core.Api.sln --configuration Release
 
