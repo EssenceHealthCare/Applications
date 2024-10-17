@@ -25,9 +25,8 @@ jobs:
       - name: Update appsettings.json
         run: |
           echo "Updating appsettings.json"
-          jq '.ConnectionStrings.AuthContext = env.AUTH_CONTEXT | .Jwt.JwtKey = env.JWT_KEY | .Jwt.JwtIssuer = env.JWT_ISSUER | .Jwt.JwtAudience = env.JWT_AUDIENCE' ./Care.Core.Api/Care.Core.Auth/appsettings.json > temp.json
-          Start-Sleep -Seconds 15  # Adding a 15-second delay
-          mv temp.json ./Care.Core.Api/Care.Core.Auth/appsettings.json
+          jq '.ConnectionStrings.AuthContext = env.AUTH_CONTEXT | .Jwt.JwtKey = env.JWT_KEY | .Jwt.JwtIssuer = env.JWT_ISSUER | .Jwt.JwtAudience = env.JWT_AUDIENCE' ./Care.Core.Api/Care.Core.Auth/appsettings.json > ${{ runner.temp }}/temp.json
+          mv -Force ${{ runner.temp }}/temp.json ./Care.Core.Api/Care.Core.Auth/appsettings.json
         env:
           AUTH_CONTEXT: ${{ secrets.AUTH_CONTEXT }}
           JWT_KEY: ${{ secrets.JWT_KEY }}
