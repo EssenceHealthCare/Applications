@@ -44,10 +44,28 @@
         </li>
       </ul>
       <div class="mt-3 mt-lg-0 d-flex align-items-center">
-        <button type="button" (click)="login()" class="btn btn-light mx-2">
+        <button
+          *ngIf="isLoggedOut$ | async"
+          type="button"
+          (click)="login()"
+          class="btn btn-light mx-2"
+        >
           Login
         </button>
-        <button (click)="signup()" class="btn btn-primary">Sign Up</button>
+        <button
+          *ngIf="isLoggedOut$ | async"
+          (click)="signup()"
+          class="btn btn-primary"
+        >
+          Sign Up
+        </button>
+        <button
+          *ngIf="isLoggedIn$ | async"
+          (click)="signout()"
+          class="btn btn-warning"
+        >
+          Sign Out
+        </button>
       </div>
     </div>
   </div>

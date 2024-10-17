@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { SharedModule } from './shared/shared.module';
 import { AUTH_BASE_URL } from './shared/api/auth-api';
+import { RootModule } from './^state/root.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,6 +14,8 @@ import { AUTH_BASE_URL } from './shared/api/auth-api';
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     SharedModule,
+    RootModule,
+    AuthModule,
   ],
   providers: [
     {

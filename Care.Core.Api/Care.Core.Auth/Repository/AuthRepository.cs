@@ -56,7 +56,7 @@ namespace Care.Core.Auth.Repository
             };
         }
 
-        public async Task<ResponseDto> Login(LoginRequestDto loginDto)
+        public async Task<UserDto> Login(LoginRequestDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             if (user != null && await _userManager.CheckPasswordAsync(user, loginDto.Password))
@@ -64,24 +64,18 @@ namespace Care.Core.Auth.Repository
                 var roles = await _userManager.GetRolesAsync(user);
                 var token = _jwtProviders.GenerateJwtToken(user, roles);
 
-                return new ResponseDto
+                return new UserDto
                 {
-                    Result = new
-                    {
-                        Id = user.Id,
-                        Email = user.Email,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        PhoneNumber = user.PhoneNumber,
-                        Roles = string.Join(",", roles),
-                        Token = token
-                    },
-                    IsSuccess = true,
-                    Message = null
+                    Id = user.Id,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    Token = token
                 };
             }
 
-            return new ResponseDto();
+            return new UserDto();
         }
 
         public async Task<IList<string>> AssignRole(string email, List<string> roles)

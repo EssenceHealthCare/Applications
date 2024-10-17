@@ -25,7 +25,7 @@ export interface IAuthService {
      * @param body (optional) 
      * @return Success
      */
-    login(body: LoginRequestDto | undefined): Observable<ResponseDto>;
+    login(body: LoginRequestDto | undefined): Observable<UserDto>;
     /**
      * @param email (optional) 
      * @param body (optional) 
@@ -106,7 +106,7 @@ export class AuthService implements IAuthService {
      * @param body (optional) 
      * @return Success
      */
-    login(body: LoginRequestDto | undefined): Observable<ResponseDto> {
+    login(body: LoginRequestDto | undefined): Observable<UserDto> {
         let url_ = this.baseUrl + "/api/auth/login";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -129,14 +129,14 @@ export class AuthService implements IAuthService {
                 try {
                     return this.processLogin(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ResponseDto>;
+                    return _observableThrow(e) as any as Observable<UserDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ResponseDto>;
+                return _observableThrow(response_) as any as Observable<UserDto>;
         }));
     }
 
-    protected processLogin(response: HttpResponseBase): Observable<ResponseDto> {
+    protected processLogin(response: HttpResponseBase): Observable<UserDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -146,7 +146,7 @@ export class AuthService implements IAuthService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResponseDto;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as UserDto;
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -307,6 +307,15 @@ export interface ResponseDto {
     result?: any | undefined;
     isSuccess?: boolean;
     message?: string | undefined;
+}
+
+export interface UserDto {
+    id?: string | undefined;
+    email?: string | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    phoneNumber?: string | undefined;
+    token?: string | undefined;
 }
 
 export class ApiException extends Error {

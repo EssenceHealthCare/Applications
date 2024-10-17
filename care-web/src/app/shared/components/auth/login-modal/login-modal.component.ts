@@ -3,6 +3,9 @@ import { NgbActiveModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../api/auth-api';
+import { Store } from '@ngrx/store';
+import { noop, tap } from 'rxjs';
+import authActions from '../../../../auth/^state/auth.actions';
 
 @Component({
   selector: 'care-web-login-modal',
@@ -17,7 +20,8 @@ export class LoginModalComponent {
     public activeModal: NgbActiveModal,
     private readonly offCanvasService: NgbOffcanvas,
     private readonly fb: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly store: Store
   ) {
     this.form = this.fb.group({
       email: ['', Validators.required],
@@ -39,10 +43,20 @@ export class LoginModalComponent {
     this.authService.login(this.form.value).subscribe((user) => {
       console.log(user);
     });
+
+    this.authService
+      .login(this.form.value)
+      .pipe(
+        tap((user) => {
+          this.store.dispatch(authActions.login({ user }));
+          this.closeModal();
+        })
+      )
+      .subscribe(noop, () => console.log('Login failed'));
   }
 
   signup() {
-    this.activeModal.close();
+    this.closeModal();
 
     setTimeout(() => {
       const offCanvasRef = this.offCanvasService.open(SignupModalComponent, {
@@ -50,5 +64,9 @@ export class LoginModalComponent {
         position: 'end',
       });
     }, 100);
+  }
+
+  closeModal() {
+    this.activeModal.close();
   }
 }
