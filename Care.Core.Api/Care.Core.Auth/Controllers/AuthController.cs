@@ -22,7 +22,7 @@ namespace Care.Core.Auth.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ResponseDto> Login(LoginRequestDto loginDto)
+        public async Task<UserDto> Login(LoginRequestDto loginDto)
         {
             return await _authService.Login(loginDto);
         }

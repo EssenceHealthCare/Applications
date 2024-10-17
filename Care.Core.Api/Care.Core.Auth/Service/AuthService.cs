@@ -23,7 +23,7 @@ namespace Care.Core.Auth.Service
             return await _authRepository.Register(registerDto);
         }
 
-        public async Task<ResponseDto> Login(LoginRequestDto loginRequestDto)
+        public async Task<UserDto> Login(LoginRequestDto loginRequestDto)
         {
             return await _authRepository.Login(loginRequestDto);
         }
